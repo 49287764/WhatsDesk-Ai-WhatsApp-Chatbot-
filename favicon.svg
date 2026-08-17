@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2d16"/>
+      <stop offset=".55" stop-color="#221a0d"/>
+      <stop offset="1" stop-color="#0c0904"/>
+    </linearGradient>
+    <linearGradient id="tileGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bubble" x1="0" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset=".45" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="bubbleGloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- tile -->
+  <rect width="64" height="64" rx="16" fill="url(#tile)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" fill="none" stroke="#5d4d2c" stroke-width="1.6"/>
+  <rect x="3" y="3" width="58" height="32" rx="13" fill="url(#tileGlow)"/>
+
+  <!-- chat bubble with tail -->
+  <path fill="url(#bubble)"
+        d="M32 12.2c-9.6 0-17.6 6.2-17.6 14.3 0 4.6 2.7 8.7 6.9 11.2l-1.9 6.3 7.6-3.1c1.6.4 3.3.6 5 .6 9.6 0 17.6-6.2 17.6-14.3S41.6 12.2 32 12.2z"/>
+  <!-- gloss on bubble -->
+  <path fill="url(#bubbleGloss)"
+        d="M20.4 20.2c1.9-2.4 7.2-4 11.6-4 4.4 0 9.7 1.6 11.6 4-2.2-3.6-6.8-5.4-11.6-5.4-4.8 0-9.4 1.8-11.6 5.4z"/>
+
+  <!-- eyes -->
+  <circle cx="25.6" cy="28.6" r="2.7" fill="#1c1409"/>
+  <circle cx="38.4" cy="28.6" r="2.7" fill="#1c1409"/>
+  <circle cx="26.5" cy="27.6" r=".9" fill="#fff" opacity=".8"/>
+  <circle cx="39.3" cy="27.6" r=".9" fill="#fff" opacity=".8"/>
+
+  <!-- smile -->
+  <path d="M25.4 35.6c2 2 4.2 3 6.6 3s4.6-1 6.6-3" fill="none" stroke="#1c1409" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- spark -->
+  <path fill="#fde68a" d="M47.6 11.9l1.15 2.55 2.55 1.15-2.55 1.15-1.15 2.55-1.15-2.55-2.55-1.15 2.55-1.15 1.15-2.55z"/>
+  <circle cx="53" cy="19.5" r="1.15" fill="#fcd34d"/>
+</svg>
