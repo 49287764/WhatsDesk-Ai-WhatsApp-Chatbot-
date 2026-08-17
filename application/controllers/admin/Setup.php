@@ -76,6 +76,28 @@ class Setup extends MY_Controller
 		$cron_set = $s['cron_key'] !== '' && $s['cron_key'] !== 'change-me';
 		$account_set = ! $this->admin_model->is_seed_account();
 
+		// Step 7 is verifiable: run a live WhatsApp credentials test (proves
+		// the token + phone number ID work against Meta) and check whether
+		// the optional cron worker heartbeat is fresh.
+		$wa_live = FALSE;
+		if ($wa_set)
+		{
+			$this->load->library('whatsapp_api');
+			$result = $this->whatsapp_api->verify_credentials();
+			$wa_live = (bool)$result['ok'];
+		}
+		$last_cron = $this->settings_model->get('last_cron_run', '');
+		$cron_fresh = ($last_cron !== '' && (time() - strtotime($last_cron)) <= 300);
+		if ($wa_live)
+		{
+			$live_note = 'WhatsApp connection verified against Meta — your bot is live! ';
+			$live_note .= $cron_fresh ? 'Worker heartbeat is fresh.' : 'Cron worker is off (optional — the webhook replies instantly on its own).';
+		}
+		else
+		{
+			$live_note = 'Credentials are set but the live WhatsApp test failed — open Settings → WhatsApp and re-check the token / phone number ID.';
+		}
+
 		return array(
 			array(
 				'key'  => 'account',
@@ -135,10 +157,10 @@ class Setup extends MY_Controller
 				'key'  => 'live',
 				'num'  => 7,
 				'title' => 'Go live: webhook + cron',
-				'desc'  => 'Point Meta\'s webhook at your site and start the background worker. Instructions below.',
-				'done'  => FALSE, // cannot be verified automatically
+				'desc'  => $live_note,
+				'done'  => $wa_live,
 				'url'   => '#go-live',
-				'cta'   => 'See instructions',
+				'cta'   => $wa_live ? 'All live — review' : 'See instructions',
 			),
 		);
 	}

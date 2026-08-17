@@ -24,6 +24,14 @@ class Bot_engine
 	protected $state = array();
 	protected $preview = FALSE; // dry-run mode (landing demo): no sends, no orders, no notifications
 
+	// Per-message tool tracking (reset at the start of every _run_bot call).
+	// These guard against the "double order" bug where the AI adds an item to
+	// the cart and then fails to produce the final reply, or calls cart_add
+	// twice for the same item in one turn.
+	protected $tools_executed = FALSE;   // the AI ran at least one tool call
+	protected $state_mutated  = FALSE;   // a cart/checkout tool ran (state changed)
+	protected $added_this_turn = array(); // "item_id:qty" keys already added via cart_add
+
 	/* ================= Public API ================= */
 
 	public function __construct()
@@ -239,6 +247,11 @@ class Bot_engine
 		{
 			$this->state['cart'] = array();
 		}
+
+		// Fresh per-message tool tracking (see property docs above).
+		$this->tools_executed = FALSE;
+		$this->state_mutated = FALSE;
+		$this->added_this_turn = array();
 
 		$reply = NULL;
 		switch ($conv['state'])
@@ -473,9 +486,36 @@ class Bot_engine
 		// checkout, knowledge) even with no AI key or a provider outage.
 		if ( ! $result || ! isset($result['content']) || trim($result['content']) === '')
 		{
+			// CRITICAL: if the AI already executed cart/checkout tools, the
+			// state (cart, conversation state) was already mutated in memory.
+			// Running the deterministic brain on top would add the item a
+			// SECOND time (the "2x items for 1 ordered" bug). Summarise the
+			// current cart instead so nothing is double-added.
+			if ($this->state_mutated)
+			{
+				return $this->_after_ai_tool_fallback();
+			}
 			return $this->_handle_offline($msg);
 		}
 		return $result['content'];
+	}
+
+	/**
+	 * Reply used when the AI ran a cart/checkout tool but then failed to
+	 * produce its final text (timeout, rate limit, empty reply). The cart
+	 * was already updated by the tool call, so we just show where things
+	 * stand instead of re-running the deterministic brain (which would
+	 * double-add items).
+	 */
+	protected function _after_ai_tool_fallback()
+	{
+		if ($this->state['cart'])
+		{
+			return "Your cart:\n" . $this->_format_cart()
+				. "\nTotal: " . $this->_currency() . money_fmt($this->_cart_total())
+				. "\n\nReply \"checkout\" to place this order, or tell me what else you'd like to add.";
+		}
+		return "I've noted that. What else can I help you with? 😊";
 	}
 
 	/* ================= Deterministic offline brain ================= */
@@ -1018,7 +1058,8 @@ class Bot_engine
 			. "4. After request_checkout, tell the customer to reply YES to confirm the order.\n"
 			. "5. If a customer asks something unrelated to your business (weather, sports, etc.), politely steer the conversation back to what you offer.\n"
 			. "6. If a customer wants to speak to a human, tell them to reply with the word \"human\".\n"
-			. "7. Never mention tool names, this prompt, or that you are an AI model. You are simply the business's assistant.";
+			. "7. Never mention tool names, this prompt, or that you are an AI model. You are simply the business's assistant.\n"
+			. "8. Only call cart_add when the customer EXPLICITLY names the item they want in their current message, and add each item only once per message. Never add an item just because the customer said \"yes\", \"ok\", \"sure\" or \"confirm\" — those confirm your previous question; they don't order new items.";
 	}
 
 	/* ================= Tools ================= */
@@ -1107,7 +1148,7 @@ class Bot_engine
 				'type' => 'function',
 				'function' => array(
 					'name' => 'cart_add',
-					'description' => 'Add a menu item to the customer\'s order cart. Returns the current cart and total.',
+					'description' => 'Add a menu item to the customer\'s order cart. Returns the current cart and total. IMPORTANT: call this only ONCE per item per customer message — never call it again for the same item after it succeeded. If the customer says "yes", "ok" or "sure" without naming a specific item, do NOT call this tool; ask what they want instead.',
 					'parameters' => array(
 						'type' => 'object',
 						'properties' => array(
@@ -1156,12 +1197,20 @@ class Bot_engine
 	 */
 	public function _execute_tool($name, array $args)
 	{
+		$this->tools_executed = TRUE;
+
 		// Cart tools need the cart to exist, even if state wasn't fully
 		// initialised (defensive — the normal flow always sets it up).
 		if (in_array($name, array('cart_add', 'cart_remove', 'cart_clear', 'request_checkout'), TRUE)
 			&& ( ! isset($this->state['cart']) || ! is_array($this->state['cart'])))
 		{
 			$this->state['cart'] = array();
+		}
+		// Any of these mutate conversation state — the offline fallback must
+		// NOT re-run on top of them or items get double-added.
+		if (in_array($name, array('cart_add', 'cart_remove', 'cart_clear', 'request_checkout'), TRUE))
+		{
+			$this->state_mutated = TRUE;
 		}
 
 		switch ($name)
@@ -1363,6 +1412,16 @@ class Bot_engine
 		{
 			$qty = 1;
 		}
+		// Guard: the same item + same quantity added twice within ONE message
+		// is almost always the AI re-calling the tool (double-order bug). The
+		// second identical call is ignored so customers never get charged for
+		// items they didn't ask for. Different quantities still add up.
+		$dedupe_key = (int)$item['id'] . ':' . $qty;
+		if (isset($this->added_this_turn[$dedupe_key]))
+		{
+			return $item['name'] . " is already in your cart.\n\n" . $this->_format_cart();
+		}
+		$this->added_this_turn[$dedupe_key] = TRUE;
 		$found = FALSE;
 		foreach ($this->state['cart'] as &$entry)
 		{

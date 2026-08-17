@@ -132,8 +132,12 @@ class Conversation_model extends CI_Model
 
 	/**
 	 * Pending inbound messages waiting for the bot.
-	 * Includes 'received' messages plus stale 'processing' locks (older than
-	 * 2 minutes) so a crashed worker is retried instead of lost.
+	 * Includes 'received' messages plus stale 'processing' locks so a crashed
+	 * worker is retried instead of lost. The stale threshold (5 min) is kept
+	 * comfortably above the longest possible inline processing time (two AI
+	 * attempts at 60s + retry pause) so the cron safety net can never pick
+	 * up a message that is still being processed by the webhook — that race
+	 * used to process the same message twice and double-add cart items.
 	 */
 	public function pending_messages($limit = 10)
 	{
@@ -142,7 +146,7 @@ class Conversation_model extends CI_Model
 		$this->db->where('status', 'received');
 		$this->db->or_group_start();
 		$this->db->where('status', 'processing');
-		$this->db->where('processed_at <', date('Y-m-d H:i:s', time() - 120));
+		$this->db->where('processed_at <', date('Y-m-d H:i:s', time() - 300));
 		$this->db->group_end();
 		$this->db->group_end();
 		$this->db->order_by('id', 'ASC');

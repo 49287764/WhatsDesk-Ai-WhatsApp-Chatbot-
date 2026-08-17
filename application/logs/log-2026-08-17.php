@@ -152,3 +152,112 @@ ERROR - 2026-08-17 13:09:17 --> 404 Page Not Found: Site/health
 ERROR - 2026-08-17 13:09:17 --> 404 Page Not Found: admin/Register/index
 ERROR - 2026-08-17 13:09:41 --> Webhook verification failed.
 ERROR - 2026-08-17 13:09:50 --> Webhook verification failed.
+ERROR - 2026-08-17 14:41:26 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7734, Requested 3019. Please try again in 20.6475s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 15:20:55 --> WhatsApp API error (400): {"error":{"message":"(#131030) Recipient phone number not in allowed list","code":131030,"type":"OAuthException","error_data":{"messaging_product":"whatsapp","details":"Recipient phone number not in allowed list: Add recipient phone number to recipient list and try again."},"fbtrace_id":"ASG4b4fuUB6nzCZIwgk1ZrY"}}
+ERROR - 2026-08-17 15:21:23 --> WhatsApp API error (400): {"error":{"message":"(#131030) Recipient phone number not in allowed list","code":131030,"type":"OAuthException","error_data":{"messaging_product":"whatsapp","details":"Recipient phone number not in allowed list: Add recipient phone number to recipient list and try again."},"fbtrace_id":"AIb6HnJ7w4T0IdRZz--tjGw"}}
+ERROR - 2026-08-17 15:36:05 --> WhatsApp API error (400): {"error":{"message":"(#131030) Recipient phone number not in allowed list","code":131030,"type":"OAuthException","error_data":{"messaging_product":"whatsapp","details":"Recipient phone number not in allowed list: Add recipient phone number to recipient list and try again."},"fbtrace_id":"AkFhCCnDPeUavMgexEtZfqj"}}
+ERROR - 2026-08-17 15:49:57 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5817, Requested 3078. Please try again in 6.7125s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 15:50:12 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6459, Requested 3111. Please try again in 11.775s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:18:04 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5268, Requested 2886. Please try again in 1.155s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:18:07 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7052, Requested 2983. Please try again in 15.2625s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:11 --> Severity: Warning --> session_id(): Session ID cannot be changed after headers have already been sent C:\xampp_new\htdocs\whatsapp_chatbot\application\controllers\Tmp_bot_test.php 26
+ERROR - 2026-08-17 16:27:12 --> Severity: Warning --> session_destroy(): Trying to destroy uninitialized session C:\xampp_new\htdocs\whatsapp_chatbot\application\controllers\Tmp_bot_test.php 52
+ERROR - 2026-08-17 16:27:12 --> Severity: Warning --> session_id(): Session ID cannot be changed after headers have already been sent C:\xampp_new\htdocs\whatsapp_chatbot\application\controllers\Tmp_bot_test.php 26
+ERROR - 2026-08-17 16:27:13 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 4963, Requested 3081. Please try again in 329.999999ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:33 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6787, Requested 2319. Please try again in 8.295s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:34 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6713, Requested 2194. Please try again in 6.8025s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:36 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6445, Requested 2194. Please try again in 4.7925s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:36 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6363, Requested 2193. Please try again in 4.17s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:38 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6099, Requested 2200. Please try again in 2.242499999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:39 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6028, Requested 2206. Please try again in 1.755s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:27:41 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7826, Requested 2285. Please try again in 15.8325s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:31:55 --> 404 Page Not Found: admin/Categories/index
+ERROR - 2026-08-17 16:31:58 --> 404 Page Not Found: admin/Change_password/index
+ERROR - 2026-08-17 16:31:58 --> 404 Page Not Found: admin/Order/view
+ERROR - 2026-08-17 16:33:44 --> 404 Page Not Found: admin/Order/view
+ERROR - 2026-08-17 16:37:40 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6633, Requested 3020. Please try again in 12.3975s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:37:42 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6363, Requested 2348. Please try again in 5.3325s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:37:43 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6191, Requested 2353. Please try again in 4.08s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 16:37:45 --> AI API error (429): {"error":{"message":"Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m07bq4fxendrec84g8kgvn1f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5851, Requested 2642. Please try again in 3.6975s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+
+ERROR - 2026-08-17 17:07:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:07:06 --> Unable to connect to the database
+ERROR - 2026-08-17 17:08:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:08:06 --> Unable to connect to the database
+ERROR - 2026-08-17 17:10:09 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:10:09 --> Unable to connect to the database
+ERROR - 2026-08-17 17:11:07 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:11:07 --> Unable to connect to the database
+ERROR - 2026-08-17 17:12:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:12:06 --> Unable to connect to the database
+ERROR - 2026-08-17 17:13:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:13:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:14:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:14:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:15:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:15:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:16:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:16:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:17:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:17:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:18:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:18:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:19:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:19:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:20:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:20:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:21:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:21:06 --> Unable to connect to the database
+ERROR - 2026-08-17 17:22:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:22:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:23:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:23:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:24:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:24:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:25:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:25:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:26:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:26:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:27:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:27:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:28:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:28:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:29:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:29:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:30:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:30:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:31:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:31:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:32:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:32:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:33:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:33:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:34:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:34:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:35:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:35:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:36:05 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it C:\xampp_new\htdocs\whatsapp_chatbot\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2026-08-17 17:36:05 --> Unable to connect to the database
+ERROR - 2026-08-17 17:47:11 --> 404 Page Not Found: Pricing/index
+ERROR - 2026-08-17 17:47:12 --> 404 Page Not Found: Contact/index
+ERROR - 2026-08-17 17:47:12 --> 404 Page Not Found: Docs/index
+ERROR - 2026-08-17 17:55:33 --> 404 Page Not Found: Pricing/index
+ERROR - 2026-08-17 17:55:34 --> 404 Page Not Found: Contact/index
+ERROR - 2026-08-17 17:55:34 --> 404 Page Not Found: Docs/index
+ERROR - 2026-08-17 17:57:48 --> 404 Page Not Found: Pricing/index

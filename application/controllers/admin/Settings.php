@@ -67,11 +67,35 @@ class Settings extends MY_Controller
 			'url'      => '#sec-whatsapp',
 		);
 
+		// Token expiry warning — Meta temporary tokens expire in ~24 h.
+		// If the last successful check was >20 h ago, warn the user.
+		$token_warn = '';
+		$token_warn_type = 'info'; // 'warning' or 'danger'
+		if ( ! empty($settings['wa_token']) && ! empty($settings['wa_token_last_verified']))
+		{
+			$last = strtotime($settings['wa_token_last_verified']);
+			$hours_ago = ($last > 0) ? (time() - $last) / 3600 : 999;
+			if ($hours_ago > 20)
+			{
+				$token_warn = 'Your WhatsApp token was last verified ' . round($hours_ago) . ' hours ago. Meta temporary tokens expire after ~24 hours — your bot may stop sending messages soon. Generate a permanent System User token (Settings → WhatsApp → the guide under the token field) and paste it here.';
+				$token_warn_type = ($hours_ago > 24) ? 'danger' : 'warning';
+			}
+		}
+		// Also show a danger warning if the connection check itself fails
+		// (the chip already shows red, but a top-level banner is harder to miss).
+		if (empty($settings['wa_token_last_verified']) && ! empty($settings['wa_token']))
+		{
+			$token_warn = 'You have a WhatsApp token set but have never verified it. Click "Check WhatsApp connection" below to test it.';
+			$token_warn_type = 'info';
+		}
+
 		$data = array(
 			'page_title' => 'Settings',
 			'settings'   => $settings,
 			'keys'       => $this->editable_keys,
 			'conn'       => $conn,
+			'token_warn' => $token_warn,
+			'token_warn_type' => $token_warn_type,
 		);
 		$this->render('admin/settings', $data);
 	}
@@ -150,10 +174,18 @@ class Settings extends MY_Controller
 		$this->load->library('whatsapp_api');
 		$result = $this->whatsapp_api->verify_credentials();
 
-		$this->flash($result['ok']
-			? 'WhatsApp connected! ' . $result['message']
-			: 'WhatsApp check failed: ' . $result['message'],
-			$result['ok'] ? 'ok' : 'err');
+		if ($result['ok'])
+		{
+			// Record the last successful verification time so the Settings
+			// page can warn when the token is likely expired (>20 h since
+			// last success — Meta temporary tokens die in ~24 h).
+			$this->settings_model->set('wa_token_last_verified', date('Y-m-d H:i:s'));
+			$this->flash('WhatsApp connected! ' . $result['message'], 'ok');
+		}
+		else
+		{
+			$this->flash('WhatsApp check failed: ' . $result['message'], 'err');
+		}
 		redirect('admin/settings');
 	}
 

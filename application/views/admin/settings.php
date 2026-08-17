@@ -66,6 +66,18 @@ function fld_help($title, $body)
   </div>
 </div>
 
+<?php if ( ! empty($token_warn)): ?>
+  <div class="alert alert-<?= $token_warn_type ?> d-flex align-items-start gap-2 mb-3" role="alert" style="border-left:4px solid;">
+    <i class="bi bi-<?= ($token_warn_type === 'danger') ? 'exclamation-triangle-fill' : (($token_warn_type === 'warning') ? 'exclamation-circle-fill' : 'info-circle-fill') ?> fs-4 flex-shrink-0 mt-1"></i>
+    <div>
+      <strong><?= ($token_warn_type === 'danger') ? 'Token likely expired' : (($token_warn_type === 'warning') ? 'Token may expire soon' : 'Token not yet verified') ?></strong><br>
+      <?= $token_warn ?>
+      <?php if ($token_warn_type !== 'info'): ?>
+        <br><small class="text-muted">System User tokens (expiry: Never) do not expire — switch to one to avoid this.</small>
+      <?php endif; ?>
+    </div>
+  </div>
+<?php endif; ?>
 <?= form_open('admin/settings/save') ?>
 
   <div class="card mb-3" id="sec-business">

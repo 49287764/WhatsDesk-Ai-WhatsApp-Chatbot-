@@ -294,6 +294,63 @@ Go to **Business info** → paste everything about your business (menu, prices, 
 
 ---
 
+# ⏰ BONUS — Set up the cron worker (hidden, no window)
+
+> The cron is the **optional safety net**: the webhook already replies to customers instantly (~1 second). The cron just catches any message that somehow didn't get a reply (AI timeout, glitch, etc.) and answers it within a minute — so **zero messages ever go unanswered** while your PC is on. You can skip this and the bot still works.
+
+This setup runs the cron **every minute with no visible window** — no cmd window flashing on screen. It needs to be done **once per PC** (do it on your PC, and again on your friend's PC if they host their own copy).
+
+## Step 1 — Create the hidden launcher file
+
+Open **Notepad** and paste this (**change the paths to match YOUR XAMPP and project folder**):
+
+```vbs
+Set sh = CreateObject("WScript.Shell")
+sh.Run "C:\xampp\php\php.exe C:\xampp\htdocs\whatsapp_chatbot\index.php cron run", 0, False
+```
+
+> ⚠️ **Important:** paths differ between PCs:
+> - XAMPP is usually at `C:\xampp\` (this guide's setup uses `C:\xampp_new\`)
+> - The project folder may not be named `whatsapp_chatbot`
+> - Both paths in the line above must match your actual folders
+
+Then **File → Save As** → name it `whatsdesk_cron_hidden.vbs` → **Save as type: All files** → save it somewhere safe, e.g. `C:\xampp\htdocs\whatsapp_chatbot\application\cache\` (anywhere works, even the Desktop).
+
+## Step 2 — Create the scheduled task (one command)
+
+Open **CMD** (or PowerShell) and run (**adjust the path** inside `wscript.exe "..."` to where you saved the .vbs file):
+
+```bat
+schtasks /Create /TN "WhatsDeskCron" /TR "wscript.exe \"C:\xampp\htdocs\whatsapp_chatbot\application\cache\whatsdesk_cron_hidden.vbs\"" /SC MINUTE /MO 1 /F
+```
+
+You should see: **`SUCCESS: The scheduled task "WhatsDeskCron" has successfully been created.`**
+
+## Step 3 — Test it
+
+```bat
+schtasks /Run /TN "WhatsDeskCron"
+```
+
+Wait ~5 seconds, then refresh your admin **dashboard** → the top bar should show **"Bot worker: live"** ✅ (the heartbeat updates every minute).
+
+## Manage it later
+
+| What | Command |
+|---|---|
+| Check if it's running | `schtasks /Query /TN "WhatsDeskCron"` |
+| Run it once manually | `schtasks /Run /TN "WhatsDeskCron"` |
+| Stop it (but keep it) | `schtasks /End /TN "WhatsDeskCron"` |
+| Start it again | `schtasks /Run /TN "WhatsDeskCron"` |
+| Remove it completely | `schtasks /Delete /TN "WhatsDeskCron" /F` |
+
+Or use the **Task Scheduler app** (Windows search → "Task Scheduler") → find **WhatsDeskCron** → right-click → Run / End / Disable.
+
+> 💡 If you move your project folder later, update the path inside `whatsdesk_cron_hidden.vbs` and re-create the task.
+> ⚠️ Your PC must be **on** (Apache + MySQL running) for the cron to work — it's a localhost setup.
+
+---
+
 # ❓ Troubleshooting
 
 | Problem | Fix |
@@ -302,7 +359,7 @@ Go to **Business info** → paste everything about your business (menu, prices, 
 | **Database error on the site** | Re-check Step 4 (import) + Step 5 (credentials) — database must be named `bizbot` |
 | **Webhook won't verify in Meta** | ngrok window closed? Apache stopped? URL mismatch? Check: `https://YOUR-NGROK-URL/whatsapp_chatbot/whatsapp/webhook` opens (error text is fine) |
 | **WhatsApp check fails in Settings** | Token expired (temporary ones die in ~24h) → generate a new one (Step 9.4) — or use the permanent System User token |
-| **"Bot worker: off (optional)"** | That's fine! It just means the optional cron safety net isn't running. Your bot still replies instantly through the webhook. |
+| **"Bot worker: off (optional)"** | That's fine — the optional cron safety net isn't running. Your bot still replies instantly through the webhook. To enable it, follow the **BONUS — Set up the cron worker** section above. |
 | **Can't reach localhost from phone** | That's normal — the phone talks to your app through the **ngrok URL**, not localhost |
 | **Port 80 in use** | Change Apache to 8080 (Step 3) and use `ngrok http 8080` |
 

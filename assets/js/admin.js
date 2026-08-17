@@ -96,6 +96,18 @@
     }
   });
 
+  /* ---------- Field help ("?") popovers ----------
+     Bootstrap 5 requires explicit JS initialization for popovers —
+     without this the help buttons on the Settings page do nothing. */
+  if (window.bootstrap && window.bootstrap.Popover) {
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function (el) {
+      new window.bootstrap.Popover(el, {
+        html: true,
+        trigger: 'hover focus'
+      });
+    });
+  }
+
   /* ---------- Password visibility toggle ---------- */
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-pw-toggle]');
